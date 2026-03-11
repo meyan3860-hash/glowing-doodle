@@ -1,0 +1,17 @@
+name: Ubuntu Free Runner
+on: [push, workflow_dispatch]
+
+jobs:
+  terminal-session:
+    runs-on: ubuntu-latest # This is the free 6-hour GitHub-hosted runner
+    timeout-minutes: 360  # Sets the limit to the maximum 6 hours (360 mins)
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Terminal Access (tmate)
+        # This allows you to connect to the runner via SSH from Termux
+        uses: mxschmitt/action-tmate@v3
+        with:
+          limit-access-to-actor: true
